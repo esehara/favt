@@ -23,11 +23,34 @@ def option_parse
   return options
 end
 
+def error_print(title)
+  print "Error!!".light_red
+  print " -- ".light_green
+  print title.uncolorize
+end
+
+
 begin
   ft = Favt::TwitterClient.new(option_parse)
   ft.render()
-rescue Twitter::Error::TooManyRequests => e
-  print "Error!!".light_red
-  print " -- ".light_green
-  print "Twitter API, Too Many Requests. Perhaps, Rate Limit Exceeded. \n".uncolorize
+rescue Twitter::Error::TooManyRequests => e  
+  error_print("Twitter API, Too Many Requests. Perhaps, Rate Limit Exceeded. \n")
+rescue Errno::ENOENT
+  error_print("Config file is not found.\n")
+  print <<EOF
+
+Config file examples (config.yaml)
+-----------------------------------
+
+client:
+  consumer_key: "uCFhVhtftsQbpSlox2KZnRCWp"
+  consumer_secret: "wzouRWR4aggXwcArfHeflkcvTDkezjFUhGLhU0D9ijj9fipMOP"
+  access_token: "7883842-IBrjYXVe6yPQ4JBLUm6WjRh8beZuMvmFtH1wckfkqT"
+  access_token_secret: "trdmKwy9CVYN4m6ZE99OmQP853B6ZlYXXWFccdZC1pOSg"
+  
+users:
+  - "esehara"
+ 
+EOF
 end
+
