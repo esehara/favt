@@ -15,8 +15,8 @@ def option_parse
       options["show_count"] = n
     end
     
-    opts.on("-u USER", "--user USER", String, "Read posts target favorited") do |n|
-      options["users"] = n
+    opts.on("-u USER", "--user USER", String, "Read posts target favorited") do |user|
+      options["user"] = user
     end
 
   end.parse!

@@ -27,13 +27,14 @@ module Favt
     end
 
     def favorites_from_user()
-      favorites = @config["users"].map do |user|
+      users = self.target_users
+      favorites = users.map do |user|
         @client.favorites user
       end.flatten!
     end
 
     def take(set_fav_posts)
-      show_count = options["show_count"].to_i || 0
+      show_count = @options["show_count"].to_i || 0
       if show_count != 0
         set_fav_posts.take(show_count)
       end
@@ -41,14 +42,15 @@ module Favt
     end
 
     def target_users()
-      return [@options["user"]] || @cofing["users"]
+      if !@options["user"]
+        return @config["users"]
+      end
+      return [@options["user"]]
     end
 
     def favorite_posts()
-
-      users = self.target_users
-
-      set_fav_posts = self.to_set(self.favorites_from_user.sort do
+      
+      show_fav_posts = self.to_set(self.favorites_from_user.sort do
         |prev_post, next_post| next_post.id <=> prev_post.id
       end)
       
