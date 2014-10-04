@@ -36,11 +36,14 @@ end
 
 begin
   ft = Favt::TwitterClient.new(option_parse)
-  ft.render()
-rescue Twitter::Error::TooManyRequests => e  
-  error_print("Twitter API, Too Many Requests. Perhaps, Rate Limit Exceeded. \n")
+  ft.render
+rescue Twitter::Error::TooManyRequests 
+  
+  error_print "Twitter API, Too Many Requests. Perhaps, Rate Limit Exceeded. \n"
+  
 rescue Errno::ENOENT
-  error_print("Config file is not found.\n")
+
+  error_print "Config file is not found.\n"
   print <<EOF
 
 Config file examples (config.yaml)
