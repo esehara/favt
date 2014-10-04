@@ -1,4 +1,4 @@
-lient:
+client:
   consumer_key: "Your Consumer Key"
   consumer_secret: "Your Consumer Secret Key"
   access_token: "Your Access Token"
