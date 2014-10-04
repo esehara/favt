@@ -35,7 +35,7 @@ module Favt
     def take(set_fav_posts)
       show_count = @options["show_count"].to_i || 0
       if show_count != 0
-        set_fav_posts.take(show_count)
+        return set_fav_posts.take(show_count)
       end
       return set_fav_posts
     end
