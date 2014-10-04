@@ -47,10 +47,10 @@ Config file examples (config.yaml)
 -----------------------------------
 
 client:
-  consumer_key: "uCFhVhtftsQbpSlox2KZnRCWp"
-  consumer_secret: "wzouRWR4aggXwcArfHeflkcvTDkezjFUhGLhU0D9ijj9fipMOP"
-  access_token: "7883842-IBrjYXVe6yPQ4JBLUm6WjRh8beZuMvmFtH1wckfkqT"
-  access_token_secret: "trdmKwy9CVYN4m6ZE99OmQP853B6ZlYXXWFccdZC1pOSg"
+  consumer_key: "Your Consumer Key"
+  consumer_secret: "Your Consumer Secret Key"
+  access_token: "Your Access Token"
+  access_token_secret: "Your Access Token Secret"
   
 users:
   - "esehara"
