@@ -19,6 +19,10 @@ def option_parse
       options["user"] = user
     end
 
+    opts.on("-f FILE", "--file FILE", String, 
+            "Set any config yaml file (default:config.yaml)") do |file|
+      options["config_file"] = file
+    end
   end.parse!
   return options
 end
