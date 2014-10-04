@@ -6,8 +6,7 @@ require "yaml"
 
 module Favt
   class TwitterClient
-
-    def init_client()
+    def init_client
       keys = @config["client"]
       @client = Twitter::REST::Client.new do |config|
         config.consumer_key = keys["consumer_key"]
@@ -26,7 +25,7 @@ module Favt
       self.init_client()
     end
 
-    def favorites_from_user()
+    def favorites_from_user
       users = self.target_users
       favorites = users.map do |user|
         @client.favorites user
@@ -41,15 +40,14 @@ module Favt
       return set_fav_posts
     end
 
-    def target_users()
+    def target_users
       if !@options["user"]
         return @config["users"]
       end
       return [@options["user"]]
     end
 
-    def favorite_posts()
-      
+    def favorite_posts
       show_fav_posts = self.to_set(self.favorites_from_user.sort do
         |prev_post, next_post| next_post.id <=> prev_post.id
       end)
@@ -70,8 +68,7 @@ module Favt
       return favorites_dict
     end
 
-    def render()
-
+    def render
       self.favorite_posts.each do |_, favorite|
         favorite["users"].times do
           print "■".red
