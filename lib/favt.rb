@@ -27,9 +27,9 @@ module Favt
 
     def favorites_from_user
       users = self.target_users
-      favorites = users.map do |user|
+      return users.flat_map do |user|
         @client.favorites user
-      end.flatten!
+      end
     end
 
     def take(set_fav_posts)
