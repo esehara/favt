@@ -70,15 +70,34 @@ module Favt
 
     def render
       self.favorite_posts.each do |_, favorite|
-        favorite["users"].times do
-          print "■".red
-        end
- 
-        post = favorite["post"] 
-        print "[#{post.user.screen_name}] ".green.bold
-        print "#{post.text}\n".uncolorize
-        print "#{post.url}\n".blue   
+        print Render.new(favorite).to_s
       end
+    end
+  end
+  
+  class Render
+   
+    def initialize(favorite)
+      @users = favorite["users"]
+      @post = favorite["post"]
+    end
+
+    def render_users
+      @users.times do
+        print "■".red
+      end 
+    end
+
+    def render_post
+      post = @post 
+      print "[#{post.user.screen_name}] ".green.bold
+      print "#{post.text}\n".uncolorize
+      print "#{post.url}\n".blue    
+    end
+
+    def to_s
+      self.render_users
+      self.render_post
     end
   end
 end
