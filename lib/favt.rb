@@ -70,29 +70,49 @@ module Favt
 
     def render
       self.favorite_posts.each do |_, favorite|
-        print Render.new(favorite).to_s
+        print Render.new(favorite, @options).to_s
       end
     end
   end
   
   class Render
    
-    def initialize(favorite)
+    def initialize(favorite, options)
       @users = favorite["users"]
       @post = favorite["post"]
+      @options = options
     end
 
     def render_users
-      @users.times do
-        print "■".red
+      render = "■"
+      
+      if !@options["no_color"]
+        render.red
+      end
+      
+      @users.times do  
+        print render
       end 
+    end
+
+    def post_colorize(render_dict)
+      if !@options["no_color"]
+        render_dict[:screen_name] = render_dict[:screen_name].green.bold
+        render_dict[:post_url] = render_dict[:post_url].blue
+      end  
+      return render_dict
     end
 
     def render_post
       post = @post 
-      print "[#{post.user.screen_name}] ".green.bold
-      print "#{post.text}\n".uncolorize
-      print "#{post.url}\n".blue    
+
+      post_template = {
+        screen_name: "[#{post.user.screen_name}] ",
+        post_text: "#{post.text}\n",
+        post_url: "#{post.url}\n",
+      }
+
+      self.post_colorize(post_template).values.join
     end
 
     def to_s
