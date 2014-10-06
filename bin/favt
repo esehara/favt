@@ -32,19 +32,18 @@ def option_parse
 end
 
 def error_print(title, options)
+
   error_template = {
     error_title: "Error!!",
     error_line: " -- "
   }
+  
   if !options["no_color"]
-    error_template[:error_title] = error_templete.red
-    error_template[:error_line] = error_template.light_green
+    error_template[:error_title] = error_template[:error_title].red
+    error_template[:error_line] = error_template[:error_line].light_green
   end
   
-  error_template.each_value do |value|
-    print value
-  end
-  
+  error_template.each_value { |value| print value}
   print title.uncolorize
 end
 
