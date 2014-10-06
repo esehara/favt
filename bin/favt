@@ -41,7 +41,7 @@ def error_print(title, options)
     error_template[:error_line] = error_template.light_green
   end
   
-  error_template.each do |_, value|
+  error_template.each_value do |value|
     print value
   end
   
@@ -50,9 +50,12 @@ end
 
 
 begin  
+
   options = option_parse
+
   ft = Favt::TwitterClient.new(options)
   ft.render
+
 rescue Twitter::Error::TooManyRequests 
 
   message = "Twitter API, Too Many Requests. Perhaps, Rate Limit Exceeded. \n"
