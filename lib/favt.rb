@@ -18,7 +18,7 @@ module Favt
     
     def initialize(options)
       yaml_file = options["config_file"] || "config.yaml"      
-
+      @render = options["render"] || Render
       @options = options 
       @config = YAML.load_file(yaml_file)
 
@@ -70,13 +70,12 @@ module Favt
 
     def render
       self.favorite_posts.each do |_, favorite|
-        print Render.new(favorite, @options).to_s
+        print @render.new(favorite, @options).to_s
       end
     end
   end
   
   class Render
-   
     def initialize(favorite, options)
       @users = favorite["users"]
       @post = favorite["post"]
