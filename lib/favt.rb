@@ -86,7 +86,7 @@ module Favt
       render = "■"
       
       if !@options["no_color"]
-        render.red
+        render = render.red
       end
       
       @users.times do  
