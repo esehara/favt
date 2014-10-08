@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
 
 require 'optparse'
 require 'colorize'
@@ -75,6 +76,12 @@ client:
   consumer_secret: "Your Consumer Secret Key"
   access_token: "Your Access Token"
   access_token_secret: "Your Access Token Secret"
+
+custom_render:
+  users: "■"
+  screen_name: "#\{post.user.screen_name}\n"
+  post_text: "#\{post.text}"
+  post_url: "#\{post.url}"
   
 users:
   - "esehara"
