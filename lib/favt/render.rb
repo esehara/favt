@@ -15,13 +15,8 @@ module Render
     
     def repack
       post = @favorite["post"]
-
-      @render = {
-        :users => {},
-        :screen_name => {},
-        :post_text => {},
-        :post_url => {}
-      }
+      @render = @origin_render
+      
       @render[:users][:template] =
         @origin_render[:users][:template] * @favorite["users"]
       @render[:screen_name][:template] =
