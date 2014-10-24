@@ -78,10 +78,18 @@ client:
   access_token_secret: "Your Access Token Secret"
 
 custom_render:
-  users: "■"
-  screen_name: "#\{post.user.screen_name}\n"
-  post_text: "#\{post.text}"
-  post_url: "#\{post.url}"
+  users:
+    template: "■"
+    color: "red"
+  screen_name:
+    template: "#\{post.user.screen_name}\n"
+    color: "green"
+  post_text:
+    template: "#\{post.text}"
+    color: "white"
+  post_url:
+    template: "#\{post.url}"
+    color: "blue"
   
 users:
   - "esehara"
